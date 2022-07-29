@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-
+import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -25,9 +25,11 @@ class _HomeScreenState extends State<HomeScreen> {
         // *Page View
         body: PageView(
           children: [
-            CustomScreen(colorUno: Colors.amberAccent),
-            CustomScreen(colorUno: Colors.greenAccent),
-            CustomScreen(colorUno: Colors.indigo),
+            CustomScreen(
+                colorUno: Colors.amberAccent, texto: WordPair.random()),
+            CustomScreen(
+                colorUno: Colors.greenAccent, texto: WordPair.random()),
+            CustomScreen(colorUno: Colors.indigo, texto: WordPair.random()),
           ],
         ),
         // ),
@@ -61,17 +63,16 @@ class _HomeScreenState extends State<HomeScreen> {
 
 class CustomScreen extends StatelessWidget {
   final Color colorUno;
+  final WordPair texto;
 
-  const CustomScreen({super.key, required this.colorUno});
+  const CustomScreen({super.key, required this.colorUno, required this.texto});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       color: colorUno,
-      child: Container(
-        child: Center(
-          child: Text('Custom Screen'),
-        ),
+      child: Center(
+        child: Text(texto.asCamelCase),
       ),
     );
   }
